@@ -28,7 +28,7 @@ type EnvironmentVariables struct {
     HTTPPort string
 }
 
-var envVariablesConfig = []EnvConfig{
+var envVariablesConfig = []gconfig.EnvConfig{
     {
         Key:      "LOG_LEVEL",
         Variable: "LogLevel",
@@ -41,9 +41,25 @@ var envVariablesConfig = []EnvConfig{
 
 var env EnvironmentVariables
 
-if err := GetEnvVariables(envVariablesConfig, &env); err != nil {
+if err := gconfig.GetEnvVariables(envVariablesConfig, &env); err != nil {
     panic(err.Error())
 }
+```
+
+### Read from file
+
+```go
+type ConfigurationFileVariables struct {
+    LogLevel string
+    HTTPPort string
+}
+
+var configuration ConfigurationFileVariables
+
+if err := gconfig.GetConfigFromFile("my/path", "file", &configuration); err != nil {
+    panic(err.Error())
+}
+    
 ```
 
 ## License

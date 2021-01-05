@@ -21,7 +21,7 @@ func testUnsetEnv(t *testing.T, key string) {
 
 func TestGetEnvVariables(t *testing.T) {
 
-	t.Run("return env variables", func(t *testing.T) {
+	t.Run("Return env variables", func(t *testing.T) {
 
 		type TestEnvironmentVariables struct {
 			LogLevel string
@@ -51,10 +51,11 @@ func TestGetEnvVariables(t *testing.T) {
 
 		assert.Equal(t, err, nil, "Error getting values")
 		assert.Equal(t, env.LogLevel, "info")
+		assert.Equal(t, env.HTTPPort, "3000")
 
 	})
 
-	t.Run("return env variables with default", func(t *testing.T) {
+	t.Run("Return env variables with default", func(t *testing.T) {
 		type TestEnvironmentVariables struct {
 			LogLevel string
 			HTTPPort string
