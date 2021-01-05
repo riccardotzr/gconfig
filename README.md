@@ -1,8 +1,10 @@
 <div align="center">
 
-# gconfig
+# GConfig
 
-![Build Status](https://github.com/riccardoAtzori91/gconfig/workflows/build/badge.svg)
+[![Build Status](https://github.com/riccardotzr/gconfig/workflows/build/badge.svg)](https://github.com/riccardotzr/gconfig/actions)
+[![Go Report Card](https://goreportcard.com/badge/github.com/riccardotzr/gconfig)](https://goreportcard.com/report/github.com/riccardotzr/gconfig)
+[![Go Reference](https://pkg.go.dev/badge/github.com/riccardotzr/gconfig.svg)](https://pkg.go.dev/github.com/riccardotzr/gconfig)
 
 </div>
 
@@ -13,7 +15,7 @@ It uses [viper](https://github.com/spf13/viper) to handle env vars and configura
 ## Install
 
 ```ssh
-go get -u github.com/riccardoatzori/gconfig
+go get -u github.com/riccardotzr/gconfig
 ```
 
 ## Usage
@@ -37,8 +39,11 @@ var envVariablesConfig = []EnvConfig{
     },
 }
 
-var env TestEnvironmentVariables
-err := GetEnvVariables(envVariablesConfig, &env)
+var env EnvironmentVariables
+
+if err := GetEnvVariables(envVariablesConfig, &env); err != nil {
+    panic(err.Error())
+}
 ```
 
 ## License
