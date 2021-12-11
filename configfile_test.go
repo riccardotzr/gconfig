@@ -15,11 +15,11 @@ func TestGetConfigurationFile(t *testing.T) {
 	}
 
 	t.Run("Read correctly configuration file and set to config structure", func(t *testing.T) {
-		path := "."
-		fileName := "config"
+		configPath := "."
+		configName := "config.test"
 		var config ConfigurationFileVariables
 
-		err := GetConfigFromFile(path, fileName, &config)
+		err := GetConfigFromFile(configName, configPath, &config)
 
 		assert.Equal(t, err, nil, "Error is nil")
 		assert.Equal(t, config.LogLevel, "info")

@@ -56,11 +56,16 @@ type ConfigurationFileVariables struct {
 
 var configuration ConfigurationFileVariables
 
-if err := gconfig.GetConfigFromFile("my/path", "file", &configuration); err != nil {
+if err := gconfig.GetConfigFromFile("config.test", ".", &configuration); err != nil {
     panic(err.Error())
 }
     
 ```
+
+## Versioning
+
+We use [SemVer](https://semver.org/) for versioning. For the versions available,
+see the [tags on this repository](https://github.com/mia-platform/configlib/tags).
 
 ## License
 

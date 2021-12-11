@@ -27,7 +27,7 @@ func GetEnvVariables(envVariablesConfig []EnvConfig, output interface{}) error {
 	}
 
 	if err := v.UnmarshalExact(&output); err != nil {
-		return fmt.Errorf("Unable to decode into struct: %s", err.Error())
+		return fmt.Errorf("unable to decode into struct: %s", err.Error())
 	}
 
 	return nil
@@ -35,7 +35,7 @@ func GetEnvVariables(envVariablesConfig []EnvConfig, output interface{}) error {
 
 func setVariable(v *viper.Viper, env EnvConfig) error {
 	if err := v.BindEnv(env.Variable, env.Key); err != nil {
-		return fmt.Errorf("Unable to bind environment variables: %s", err.Error())
+		return fmt.Errorf("unable to bind environment variables: %s", err.Error())
 	}
 
 	if env.DefaultValue != "" {
@@ -46,7 +46,7 @@ func setVariable(v *viper.Viper, env EnvConfig) error {
 		_, ok := os.LookupEnv(env.Key)
 
 		if !ok {
-			return fmt.Errorf("")
+			return fmt.Errorf("required env variable %s not set", env.Key)
 		}
 	}
 
