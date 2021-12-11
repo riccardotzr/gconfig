@@ -3,25 +3,31 @@ package gconfig
 import (
 	"fmt"
 
-	"github.com/spf13/viper"
+	"github.com/knadh/koanf"
+	kjson "github.com/knadh/koanf/parsers/json"
+	"github.com/knadh/koanf/providers/file"
+	"github.com/mitchellh/mapstructure"
 )
 
-// GetConfigFromFile read configuration from file and save in output interface
-func GetConfigFromFile(path string, fileName string, output interface{}) error {
+// GetConfigFromFile func read configuration from file and save in output interface.
+func GetConfigFromFile(configName string, configPath, output interface{}) error {
+	var k = koanf.New(".")
 
-	viper.AddConfigPath(path)
-	viper.SetConfigName(fileName)
+	currentPath := fmt.Sprintf("%s/%s.json", configPath, configName)
 
-	if err := viper.ReadInConfig(); err != nil {
-		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
-			return fmt.Errorf("Config file not found: %s", err.Error())
-		}
-
-		return fmt.Errorf("Error reading config file: %s", err.Error())
+	if err := k.Load(file.Provider(currentPath), kjson.Parser()); err != nil {
+		return fmt.Errorf("error loading config file: %s", err.Error())
 	}
 
-	if err := viper.UnmarshalExact(&output); err != nil {
-		return fmt.Errorf("Unable to decode into struct: %s", err.Error())
+	if err := k.UnmarshalWithConf("", &output, koanf.UnmarshalConf{
+		DecoderConfig: &mapstructure.DecoderConfig{
+			Metadata:         nil,
+			Result:           &output,
+			WeaklyTypedInput: true,
+			ErrorUnused:      true,
+		},
+	}); err != nil {
+		return fmt.Errorf("error unmarshalling file: %s", err.Error())
 	}
 
 	return nil
