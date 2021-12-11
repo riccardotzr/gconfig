@@ -1,0 +1,4 @@
+{
+    "LogLevel": "info",
+    "HTTPPort": 3000
+}
