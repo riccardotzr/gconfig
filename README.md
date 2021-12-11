@@ -10,7 +10,7 @@
 
 GConfig is a go library to handle configuration file and environment variables.
 
-It uses [viper](https://github.com/spf13/viper) to handle env vars and configuration file.
+It uses [viper](https://github.com/spf13/viper) and [koanf](https://github.com/knadh/koanf) to handle env vars and configuration file.
 
 ## Install
 
@@ -65,7 +65,7 @@ if err := gconfig.GetConfigFromFile("config.test", ".", &configuration); err != 
 ## Versioning
 
 We use [SemVer](https://semver.org/) for versioning. For the versions available,
-see the [tags on this repository](https://github.com/mia-platform/configlib/tags).
+see the [tags on this repository](https://github.com/riccardotzr/gconfig/tags).
 
 ## License
 
