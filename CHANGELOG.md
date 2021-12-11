@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.0 - 2021-12-11
+
+### Changed
+
+- Update go to 1.13 -> 1.17
+
 ## v1.0.2 - 2021-12-11
 
 ### Added
